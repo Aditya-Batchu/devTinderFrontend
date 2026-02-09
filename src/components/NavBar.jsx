@@ -1,14 +1,27 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { removeUser } from "../utils/userSlice";
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
-  const handleLogout = () => {
-    const res = axios.post("http://localhost:3000/logout", {},{
-      withCredentials: true,
-    });
-    console.log("Logout succes");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/logout",
+        {},
+        {
+          withCredentials: true,
+        },
+      );
+      dispatch(removeUser());
+      console.log("Logout succes");
+      return navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
   };
   // console.log(user);
   return (
