@@ -12,4 +12,8 @@
 - Create browser router > Routes > Route="Body" > Childern routes
 - Add outlet to the body component
 - add a footer to the application
+- Create a login page
 
+- install axios
+- CORS - Install cors in backend => add middleware to with credentials.
+- whenever, making an api call use axios => {withCredentials: true}
