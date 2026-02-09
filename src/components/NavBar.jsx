@@ -1,14 +1,24 @@
+import axios from "axios";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
+  const handleLogout = () => {
+    const res = axios.post("http://localhost:3000/logout", {},{
+      withCredentials: true,
+    });
+    console.log("Logout succes");
+  };
   // console.log(user);
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">🧑‍💻 DevTinder</a>
+        <Link to="/" className="btn btn-ghost text-xl">
+          🧑‍💻 DevTinder
+        </Link>
       </div>
-      {user && 
+      {user && (
         <div className="flex gap-2 items-center">
           {/* <input
             type="text"
@@ -37,21 +47,23 @@ const NavBar = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a className="justify-between">
+                <Link to="/profile" className="justify-between">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <a>Settings</a>
               </li>
               <li>
-                <a className="bg-red-300">Logout</a>
+                <Link onClick={handleLogout} className="bg-red-300">
+                  Logout
+                </Link>
               </li>
             </ul>
           </div>
         </div>
-      }
+      )}
     </div>
   );
 };

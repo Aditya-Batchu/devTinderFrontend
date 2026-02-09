@@ -19,4 +19,7 @@
 - whenever, making an api call use axios => {withCredentials: true}
 - install react-reduc @reactjs/toolkit 
 - => configureStore => Provider => createSlice => add recucer to the store.
-- 
+- Add redux devTools in chrome
+- NavBar should update as soon as user logins
+- you should not give access to other routes without login
+- If token is not present, redirect to the login page.
