@@ -30,3 +30,4 @@
 - Show toast messgae on save of profile
 - Build connections Page to see all the connections.
 - Build new page to see all requests.
+- Handle request page edge cases.

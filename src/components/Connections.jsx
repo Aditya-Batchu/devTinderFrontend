@@ -14,6 +14,7 @@ const Connections = () => {
     });
     dispatch(addConnections(res?.data?.data));
   };
+
   useEffect(() => {
     fetchConnections();
   }, []);
@@ -25,11 +26,14 @@ const Connections = () => {
   return (
     <div className="text-center my-10">
       <h1 className="text-bold text-2xl">Connections</h1>
-      {connections.map((connection, index) => {
+      {connections.map((connection) => {
         const { firstName, lastName, age, gender, about, photoURL } =
           connection;
         return (
-          <div className="flex flex-col sm:flex-row gap-6 p-6 m-4 rounded-xl bg-gradient-to-r from-base-200 to-base-300 shadow-lg hover:shadow-2xl transition-shadow duration-300 max-w-2xl mx-auto border border-base-300">
+          <div
+            key={connection._id}
+            className="flex flex-col sm:flex-row gap-6 p-6 m-4 rounded-xl bg-gradient-to-r from-base-200 to-base-300 shadow-lg hover:shadow-2xl transition-shadow duration-300 max-w-2xl mx-auto border border-base-300"
+          >
             <div className="flex-shrink-0">
               <img
                 src={
