@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const user = useSelector((state)=>state.user);
+  const user = useSelector((state) => state.user);
   const [emailId, setEmailId] = useState("aditya3@gmail.com");
   const [password, setPassword] = useState("Qwert@123");
+  const [error, setError] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  if(user){
-    return navigate("/");
-  }
+
+  useEffect(() => {
+    if (user) {
+      navigate("/feed");
+    }
+  }, [user, navigate])
 
   const handleLogin = async () => {
     try {
@@ -24,11 +28,10 @@ const Login = () => {
         },
         { withCredentials: true },
       );
-      console.log(res.data);
       dispatch(addUser(res.data));
-      return navigate("/feed");
+      // navigate("/feed");
     } catch (err) {
-      console.log("ERROR: " + err.message);
+      setError(err?.response?.data || "Something went wrong");
     }
   };
 
@@ -61,6 +64,7 @@ const Login = () => {
               />
             </label>
           </div>
+          <p className="text-red-500">{error}</p>
           <div className="card-actions justify-center">
             <button className="btn btn-primary" onClick={handleLogin}>
               Login{" "}

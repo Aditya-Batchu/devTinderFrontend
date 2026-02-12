@@ -23,3 +23,4 @@
 - NavBar should update as soon as user logins
 - you should not give access to other routes without login
 - If token is not present, redirect to the login page.
+- Logout feature
