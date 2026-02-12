@@ -24,3 +24,9 @@
 - you should not give access to other routes without login
 - If token is not present, redirect to the login page.
 - Logout feature
+- Get feed
+- Update feed
+- Edit profile feature
+- Show toast messgae on save of profile
+- Build connections Page to see all the connections.
+- Build new page to see all requests.
